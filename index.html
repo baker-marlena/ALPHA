@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
     <script src="script.js" charset="utf-8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
@@ -16,6 +16,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">ALPHA</a>
+          <p id="sublogo">INTERNATIONAL SPACE STATION TRACKER</p>
         </div>
           <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -23,7 +24,6 @@
               <input type="text" class="form-control" name="latitude" placeholder="Enter Your Latitude">
             </div>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">WHEN CAN I SEE THE ISS?</button>
-            <button id='geolocate'>Find me</button>
           </form>
       </div>
     </nav>
@@ -37,10 +37,12 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <h3>The ISS Will Be Above You On</h3>
+              <h3>LOOK AT THE SKY ON</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body passtimes"></div>
+            <div class="modal-header astronautNum">
             </div>
+            <div class="modal-body onboard"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -48,6 +50,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

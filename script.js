@@ -1,43 +1,12 @@
-window.onload = function() {
+$(document).ready(function() {
 
-//MAP WITH ISS
+//MAP WITH ISS LOCATION
   var map = L.map('map').setView([0, 0], 3);
-  var geolocate = document.getElementById('geolocate');
+
+//DISABLE MOUSE SCROLL ZOOM
   map.scrollWheelZoom.disable();
-
-  if (!navigator.geolocation) {
-geolocate.innerHTML = 'geolocation is not available';
-} else {
-geolocate.onclick = function (e) {
-e.preventDefault();
-e.stopPropagation();
-map.locate();
-};
-}
-
-map.on('locationfound', function(e) {
-map.fitBounds(e.bounds);
-
-map.markerLayer.setGeoJSON({
-type: "Feature",
-geometry: {
-type: "Point",
-coordinates: [e.latlng.lng, e.latlng.lat]
-},
-properties: {
-'marker-color': '#000',
-'marker-symbol': 'star-stroked'
-}
-});
-
-// And hide the geolocation button
-geolocate.parentNode.removeChild(geolocate);
-console.log(coordinates)
-});
-
-
   function moveISS () {
-      $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function(data) {
+      $.getJSON('https://galvanize-cors-proxy.herokuapp.com/http://api.open-notify.org/iss-now.json?callback=?', function(data) {
           var lat = data['iss_position']['latitude'];
           var lon = data['iss_position']['longitude'];
 
@@ -45,19 +14,21 @@ console.log(coordinates)
           isscirc.setLatLng([lat, lon]);
           map.panTo([lat, lon], animate=true);
       });
-      setTimeout(moveISS, 60000);
+      // setTimeout(moveISS, 5000);
   }
 
+//MAP TILE LAYERS
   L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2hhc2Vyd2FzZXIyNSIsImEiOiJjajJxampiajAwM25jMndubjFqcDBydHRhIn0.KFNhZwQr6h5JY71n0mkfAQ', {
-      maxZoom: 13,
+      maxZoom: 5,
   }).addTo(map);
 
+//ISS MAP ICON
   var ISSIcon = L.icon({
       iconUrl: 'images/station.png',
       iconSize: [50, 30],
       iconAnchor: [25, 15],
       popupAnchor: [50, 25],
-      // shadowUrl: '/Open-Notify-API/map/ISSIcon_shadow.png',
+      shadowUrl: 'images/shadow.png',
       shadowSize: [60, 40],
       shadowAnchor: [30, 15]
   });
@@ -67,27 +38,33 @@ console.log(coordinates)
 
   moveISS();
 
-  //NAMES OF PEOPLE ON BOARD THE ISS
-//   $.getJSON('http://api.open-notify.org/astros.json', function(data) {
-//     var html = "";
-//     for(people in data.people){
-//        html += "<li>" + data.people[people].name + "</li>"
-//     }
-//     $(".modal-body").append(html);
-//
-// });
-
-//PASS TIMES
+//PASS TIMES AND PEOPLE ON BOARD
 $(".btn").on("click", function(){
   var lats = $("[name='latitude']").val();
   var longs = $("[name='longitude']").val();
-  $.getJSON("http://api.open-notify.org/iss-pass.json?lat=" + lats + "&lon=" + longs + "&alt=20&n=5&callback=?", function(data) {
+//PASSING IN LAT AND LON VALUES FOR PASS TIMES
+  $.getJSON("https://galvanize-cors-proxy.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=" + lats + "&lon=" + longs + "&alt=20&n=1&callback=?", function(data) {
       data['response'].forEach(function (d) {
           var date = new Date(d['risetime']*1000);
-           $('.modal-body').append('<li>' + date.toString() + '</li>');
+           $('.passtimes').append('<h4>' + date.toString() + '</h4>');
       });
+
+//POPULATE NUM OF ASTRONAUTS AND NAMES
+  $.getJSON('http://api.open-notify.org/astros.json', function(data) {
+    var html = "";
+    var astroNum = "<h3>AND WAVE TO THE " + data.number + " ASTRONAUTS ON BOARD</h3>"
+    for(people in data.people){
+      html += "<h4>" + data.people[people].name.toUpperCase() + "</h4>"
+    }
+      $(".onboard").append(html);
+      $(".astronautNum").append(astroNum)
+    });
   });
-  $('.modal-body').empty();
+  
+//CLEAR RESULTS
+  $('.passtimes').empty();
+  $('.astronautNum').empty();
+  $('.onboard').empty();
 })
 
-};
+});

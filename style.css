@@ -1,38 +1,49 @@
-@font-face {font-family: "Krungthep";
-    url("//db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.woff2") format("woff2"),
-    url("//db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.woff") format("woff"),
-    url("//db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.ttf") format("truetype"),
-    url("//db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.svg#Krungthep") format("svg");
-}
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Titillium+Web');
 
 body {
   margin: 0px;
 }
 
+.navbar-default .navbar-brand{
+  color: #DC3023;
+}
+
+.navbar-header{
+  display: flex;
+  align-items: center;
+}
+
 .navbar a {
-  font-family: "Krungthep";
+  font-family: "Audiowide";
+  color: red;
   font-size: 32px;
   font-weight: 700;
 }
+
 .navbar {
   margin-bottom: 0px;
 }
 
-.navbar-brand span {
+#sublogo {
+  font-family: "Audiowide";
+  padding-top: 10px;
+  color:black;
   font-size: 10px;
-  font-family: Arial;
   font-weight: 100;
 }
 
 h3 {
-  font-family: "Krungthep";
-  font-weight: 700;
+  font-family: "Audiowide";
+  color: #DC3023;
 }
 
 h4 {
-  font-size: .7em;
-  font-family: "Krungthep";
-  letter-spacing: 3px;
+  font-family: "Audiowide";
+}
+
+.form-control:focus {
+  border-color: #FF0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px #DC3023;;
 }
 
 #map {
