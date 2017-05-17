@@ -4,17 +4,21 @@ body {
   margin: 0px;
 }
 
-p{
+p {
   font-family:"Titillium Web";
-  letter-spacing: 1px;
   line-height: 30px;
+}
+
+.modal-body {
+  width: 80%;
+  margin: auto;
 }
 
 .navbar-default .navbar-brand{
   color: #DC3023;
 }
 
-.navbar-header{
+.navbar-header {
   display: flex;
   align-items: center;
 }
@@ -38,13 +42,25 @@ p{
   font-weight: 100;
 }
 
-h3 {
+h1, h2, h3, h4 {
   font-family: "Audiowide";
   color: #DC3023;
 }
 
-h4 {
+h5{
+  padding: 5px 5px;
+}
+
+h5 a{
   font-family: "Audiowide";
+  color: black;
+  padding: 5px 5px;
+  transition: .5s;
+}
+
+h5 a:hover{
+  text-decoration: none;
+  color: #DC3023;
 }
 
 .form-control:focus {
@@ -53,7 +69,7 @@ h4 {
 }
 
 #map {
-    height: 100vh;
+    height: 94vh;
     width: 100%;
 }
 

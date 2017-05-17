@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-$('#myModal').modal('show');
+$("#myModal").modal("show");
 
 
 //MAP WITH ISS LOCATION
@@ -10,8 +10,8 @@ $('#myModal').modal('show');
   map.scrollWheelZoom.disable();
   function moveISS () {
       $.getJSON('https://galvanize-cors-proxy.herokuapp.com/http://api.open-notify.org/iss-now.json?callback=?', function(data) {
-          var lat = data['iss_position']['latitude'];
-          var lon = data['iss_position']['longitude'];
+          var lat = data["iss_position"]["latitude"];
+          var lon = data["iss_position"]["longitude"];
           iss.setLatLng([lat, lon]);
           isscirc.setLatLng([lat, lon]);
           map.panTo([lat, lon], animate=true);
@@ -20,17 +20,17 @@ $('#myModal').modal('show');
   }
 
 //MAP TILE LAYERS
-  L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2hhc2Vyd2FzZXIyNSIsImEiOiJjajJxampiajAwM25jMndubjFqcDBydHRhIn0.KFNhZwQr6h5JY71n0mkfAQ', {
+  L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2hhc2Vyd2FzZXIyNSIsImEiOiJjajJxampiajAwM25jMndubjFqcDBydHRhIn0.KFNhZwQr6h5JY71n0mkfAQ", {
       maxZoom: 5,
   }).addTo(map);
 
 //ISS MAP ICON
   var ISSIcon = L.icon({
-      iconUrl: 'images/ISSIcon.png',
+      iconUrl: "images/ISSIcon.png",
       iconSize: [50, 30],
       iconAnchor: [25, 15],
       popupAnchor: [50, 25],
-      shadowUrl: 'images/ISSIcon_shadow.png',
+      shadowUrl: "images/ISSIcon_shadow.png",
       shadowSize: [60, 40],
       shadowAnchor: [30, 15]
   });
@@ -87,25 +87,30 @@ $(".btn").on("click", function(){
   var lats = $("[name='latitude']").val();
   var longs = $("[name='longitude']").val();
 //PASSING IN LAT AND LON VALUES FOR PASS TIMES
+if(lats == "" || longs == ""){
+  $(".modal-body").text("WE COULD NOT MAKE A PROPER CALCULATION. PLEASE CHECK YOUR LONGITUDE AND LATITUDE INPUTS!")
+
+} else {
+
   $.getJSON("https://galvanize-cors-proxy.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=" + lats + "&lon=" + longs + "&alt=20&n=1&callback=?", function(data) {
-      data['response'].forEach(function (d) {
+      data["response"].forEach(function (d) {
           var date = new Date(d['risetime']*1000);
-           $('.modal-body').append('<h3>WE DID OUR CALCULATIONS AND THE SPACE STATION WILL PASS YOU ON... </h3>' + "<h4>" + date.toString() + "</h4>");
+           $(".modal-body").append("<h4>WE DID OUR CALCULATIONS AND THE SPACE STATION WILL PASS YOU ON... </h4>" + "<h5>" + date.toString().toUpperCase() + "</h5>");
       });
 
 //POPULATE NUM OF ASTRONAUTS AND NAMES
   $.getJSON('https://galvanize-cors-proxy.herokuapp.com/http://api.open-notify.org/astros.json', function(data) {
     var html = "";
-    var astroNum = "<h3>MAKE SURE TO WAVE TO THE " + data.number + " ASTRONAUTS ON BOARD</h3>"
+    var astroNum = "<h4>MAKE SURE TO WAVE TO THE " + data.number + " ASTRONAUTS ON BOARD</h4>"
     for(people in data.people){
-      html += "<h4>" + data.people[people].name.toUpperCase() + "</h4>"
+      html += "<h5><a href='https://en.wikipedia.org/wiki/" + data.people[people].name + "'>" + data.people[people].name.toUpperCase() + "</a></h5>"
     }
       $(".modal-body").append(astroNum)
       $(".modal-body").append(html);
     });
   });
 
-
+}
 })
 
 });
