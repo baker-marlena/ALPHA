@@ -4,6 +4,12 @@ body {
   margin: 0px;
 }
 
+p{
+  font-family:"Titillium Web";
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
 .navbar-default .navbar-brand{
   color: #DC3023;
 }

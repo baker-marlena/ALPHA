@@ -3,10 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
-    <script src="script.js" charset="utf-8"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -20,8 +16,19 @@
         </div>
           <form class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="text" class="form-control" name="longitude" placeholder="Enter Your Longitude">
-              <input type="text" class="form-control" name="latitude" placeholder="Enter Your Latitude">
+              <select class="form-control" name="dropdown">
+                <option disabled selected>SELECT A CITY</option>
+                <option value="DALLAS">DALLAS</option>
+                <option value="DENVER">DENVER</option>
+                <option value="HONOLULU">HONOLULU</option>
+                <option value="JACKSONVILLE">JACKSONVILLE</option>
+                <option value="NEW YORK">NEW YORK</option>
+                <option value="HONOLULU">PHOENIX</option>
+                <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+                <option value="SEATTLE">SEATTLE</option>
+              </select>
+              <input type="text" class="form-control" name="longitude" placeholder="LONGITUDE">
+              <input type="text" class="form-control" name="latitude" placeholder="LATITUDE">
             </div>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">WHEN CAN I SEE THE ISS?</button>
           </form>
@@ -36,19 +43,22 @@
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header">
-              <h3>LOOK AT THE SKY ON</h3>
+            <div class="modal-header"><h3>INCOMMING MESSAGE...</h3></div>
+            <div class="modal-body"><p><strong>MAYDAY MAYDAY,</strong> THIS IS THE SPACE EXPLORATION HEAD QUARTERS. WE HAVE AN EMERGENCY! OUR INTERNATIONAL SPACE STATION TRACKER, ALPHA, UPDATES THE CURRENT LOCATION OF THE ISS EVERY 5 SECONDS BUT WE CANNOT SEEM TO GET A VISUAL
+              SIGHTING, AND WE NEED YOUR HELP! PLEASE USE LONGITUDE AND LATITUDE INPUTS TO ENTER YOUR CURRENT COORDINATES.
+              IF YOU NEED HELP, WE HAVE PROVIDED A DROP DOWN LIST WITH MAJOR CITIES, THIS WILL PROVIDE THE NEXT TIME WHEN THE INTERNATIONAL SPACE STATION WILL PASS ABOVE YOUR LOCATION. WE NEED YOU TO GO LOOK FOR IT,
+              BUT LOOK QUICK, THE SPACE STATION IS TRAVELLING AT ROUGHLY <strong>18,000MPH!</strong></p>
             </div>
-            <div class="modal-body passtimes"></div>
-            <div class="modal-header astronautNum">
-            </div>
-            <div class="modal-body onboard"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">DISMISS MESSAGE</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <script src="script.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
