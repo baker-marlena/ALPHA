@@ -16,7 +16,7 @@ $("#myModal").modal("show");
           isscirc.setLatLng([lat, lon]);
           map.panTo([lat, lon], animate=true);
       });
-      // setTimeout(moveISS, 5000);
+      setTimeout(moveISS, 60000);
   }
 
 //MAP TILE LAYERS
